@@ -1,31 +1,35 @@
 <div class='movie-container'>
-    <div class='image'>
-        <img src="{{image}}" alt="movie folder">
-    </div>
+  
+  <div class='image'>
+    <img src="{{image}}" alt="movie folder">
+  </div>
 
-    <div>
-        <a href="/movies">Go back</a>
-        <h2>{{title}}</h2>
-        <h3>Director: {{director}}</h3>
-        <h4>Stars</h4>
+  <div>
 
-        <ul>
-            {{#each stars}}
-                <li>{{this}}</li>
-            {{/each}}
-        </ul>
+    <a href="/movies">Go back</a>
+    <h2>{{title}}</h2>
+    <h3>Director: {{director}}</h3>
+    <h4>Stars</h4>
 
-        <p>{{description}}</p>
-        
-        {{#each showtimes}}
-            {{#unless @last}}
-                <span>{{this}} |</span>
-            {{/unless}}
+    <ul>
+      {{#each stars}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
 
-            {{#if @last}}
-                <span>{{this}}</span>
-            {{/if}}
-            
-        {{/each}}
-    </div>
+    <p>{{description}}</p>
+
+    {{#each showtimes}}
+      {{#unless @last}}
+        <span>{{this}} |</span>
+      {{/unless}}
+
+      {{#if @last}}
+        <span>{{this}}</span>
+      {{/if}}
+
+    {{/each}}
+
+  </div>
+
 </div>
