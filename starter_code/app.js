@@ -12,24 +12,25 @@ const movies       = require('./bin/seeds');
 const Movie        = require('./models/Movie');
 
 
-mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true, useUnifiedTopology: true})
-  .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
-    x.connection.dropDatabase();
-    console.log('Database cleared!')
+const run = async () => { 
+  try {
+    const self = await mongoose.connect('mongodb://localhost/starter-code', {
+      useNewUrlParser: true, useUnifiedTopology: true
+    })
+    console.log(`Connected to Mongo! Database name: "${self.connections[0].name}"`);
+      
+    await self.connection.dropDatabase();
+    console.log('Database was cleared!');
+      
+    await Movie.create(movies);
+    console.log(`${movies.length} movies was inserted into Database!`);
     
-    Movie
-      .create(movies, (err) => {
-        if(err) {
-          throw(err);
-        }
-        console.log('Movies created!\n', movies);
-      })
-  })
-  .catch(err => {
-    console.error('Error connecting to mongo', err);
-  });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+run();
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
