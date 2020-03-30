@@ -20,6 +20,8 @@ html {
 }
 
 .movies-container {
+  max-width: 1200px;
+  justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -27,14 +29,7 @@ html {
 }
 
 .movie-card {
-  padding: 30px 100px;
-}
-
-.movie-card p {
-  text-align: center;
-}
-
-.movie-card a {
+  padding: 30px 70px;
   text-align: center;
 }
 
